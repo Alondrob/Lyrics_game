@@ -19,19 +19,19 @@ def music_data
 
           "80's rock":{
                         "Bon Jovi": [
-                          "You Give Love a Bad Name", "It's My Life", "Have a Nice Day", "Wanted Dead or Alive", "Bad Medicine", "We Weren't Born to Follow", "I'll Be There for You", "Born to Be My Baby", "Blaze of Glory", "Bed Of Roses", "Lay Your Hands on Me", "Always", "Runaway"
+                          "You Give Love a Bad Name", "Its My Life", "Have a Nice Day", "Wanted Dead or Alive", "Bad Medicine", "We Werent Born to Follow", "Ill Be There for You", "Born to Be My Baby", "Blaze of Glory", "Bed Of Roses", "Lay Your Hands on Me", "Always", "Runaway"
                         ],
                            
                         "Guns N Roses": [
-                          "Welcome to the Jungle", "Sweet Child o' Mine", "Patience", "Paradise City", "Civil War", "You Could Be Mine", "Don't Cry", "November Rain", "Night Train", "Yesterdays", "Rocket Queen"
+                          "Welcome to the Jungle", "Sweet Child of Mine", "Patience", "Paradise City", "Civil War", "You Could Be Mine", "Dont Cry", "November Rain", "Night Train", "Yesterdays", "Rocket Queen"
                         ],
 
                         "Motley Crue": [
-                          "Shout at the Devil",	"Looks That Kill", "Home Sweet Home", "Wild Side", "Dr. Feelgood", 	"Kickstart My Heart"
+                          "Shout at the Devil",	"Looks That Kill", "Wild Side", "Dr. Feelgood", "Kickstart My Heart"
                         ],
 
                         "Journey": [
-                          "Only the Young", "Don't Stop Believin", "Wheel in the Sky", "Faithfully", "Lights", "Open Arms"
+                          "Only the Young", "Dont Stop Believin", "Wheel in the Sky", "Faithfully", "Lights", "Open Arms"
                         ]
 
                       }, #80s rock ends
@@ -42,7 +42,7 @@ def music_data
                         ],
                            
                        "Megadeth": [
-                          "Sweating Bullets", "Sweet Child o' Mine", "Patience", "Paradise City", "Civil War", "You Could Be Mine", "Don't Cry", "November Rain", "Night Train", "Yesterdays", "Rocket Queen"
+                          "Sweating Bullets", "Peace Sells", "A Tout le Monde", "Symphony of Destruction", "Hangar 18"
                         ],
                         
                         "Iron Maiden": [
@@ -57,15 +57,15 @@ def music_data
                         ],
                            
                        "Billy Joel": [
-                          "The Longest Time", "This Night", "New York State of Mind", "Only the Good Die Young", "My Life", "She's Always a Woman", "We Didn't Start the Fire", "Uptown Girl", "Just the Way You Are", "Piano Man"
+                          "The Longest Time", "This Night", "New York State of Mind", "Only the Good Die Young", "My Life", "Shes Always a Woman", "We Didnt Start the Fire", "Uptown Girl", "Just the Way You Are", "Piano Man"
                         ],
 
                         "Ray Charles": [
-                          "Unchain My Heart", "I’ve Got A Woman", "Georgia On My Mind", "Winter Wonderland", "Hit The Road Jack", "Drown In My Own Tears"
+                          "Unchain My Heart", "Ive Got A Woman", "Georgia On My Mind", "Winter Wonderland", "Hit The Road Jack", "Drown In My Own Tears"
                         ],
 
                         "Stevie Wonder": [
-                          "Overjoyed", "I Just Called to Say I Love You", "I Wish", "Sir Duke", "Higher Ground", "As","Superstition"
+                          "Overjoyed", "I Just Called to Say I Love You", "I Wish", "Sir Duke", "Higher Ground", "As", "Superstition"
                         ]
 
                        }, #sweet piano ends
@@ -88,7 +88,7 @@ def music_data
                         ],
 
                         "The Rolling Stones": [
-                          "Angie", "You Can't Always Get What You Want", "Tumbling Dice", "Wild Horses", "Satisfaction", "Paint It Black", "Sympathy for the Devil", "Gimme Shelter", "Beast Of Burden"
+                          "Angie", "You Cant Always Get What You Want", "Tumbling Dice", "Wild Horses", "Satisfaction", "Paint It Black", "Sympathy for the Devil", "Gimme Shelter", "Beast Of Burden"
                         ]
 
                         }, #best of classics ends

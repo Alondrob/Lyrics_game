@@ -8,15 +8,10 @@ class User
     def initialize
         print_help
         read_input
-        # create_obj
+      
     end
 
-    # def print_help
-    #     puts "|--------------COMMANDS---------------|"
-    #     puts "|--- Type start to begin the game------|"
-    #     puts "|-----Type quit exit the game------|"
-    #     puts "|-------------------------------------|"
-    # end
+
 
     def print_help
         puts  "Welcome Lyrics expert!"
@@ -43,74 +38,111 @@ class User
     def genre_input
         puts ":=>"
         input = gets.strip
-        #  binding.pry
-        if  input == "80's rock"
-            genre = Genre.new(input)
-            genre.add_artists(music_data[input.downcase.to_sym])
-              puts "OHH SUNSET STRIP, THOSE WERE THE TIMES!!"
-              song = genre.artists.sample.songs.sample
-              puts "====>"
-              puts "Alright #{@name_input}, guess the song"
-              puts
-              puts song.lyrics
-              song_guess
-    
-        elsif input == "Best of classics"
-              genre = Genre.new(input)
-              genre.add_artists(music_data[input.downcase.to_sym])
-              puts "You're an old school ha ?, let's test it !!"
-              song = genre.artists.sample.songs.sample
-              puts "====>"
-              puts "Alright #{@name_input}, guess the song"
-              puts
-              puts song.lyrics
-    
-        elsif input == "Grunge"
-              genre = Genre.new(input)
-              genre.add_artists(music_data[input.downcase.to_sym])
-              puts "Seattle's grey sky and some rainy mood !!"
-              puts genre.artists.sample.songs.sample.lyrics
-              puts "====>"
-              puts "Alright #{@name_input}, guess the song"
-              puts
-              puts song.lyrics
+        @max_points = 10 
+        @current_points = 0
+        while @current_points < @max_points do 
+            puts "current points is #{@current_points}"
 
-        elsif input == "Guilty Pleasures"
-              genre = Genre.new(input)
-              genre.add_artists(music_data[input.downcase.to_sym])
-              puts "Don't worry, we all got those guilty pleasures !!"
-              song = genre.artists.sample.songs.sample
-              puts "====>"
-              puts "Alright #{@name_input}, guess the song!"
-              puts
-              puts song.lyrics
-    
-        elsif input == "Head bangers"
-              genre = Genre.new(input)
-              genre.add_artists(music_data[input.downcase.to_sym])
-              puts "SHAKE YOUR HAIR AND DO SOME AIR GUITAR !!"
-              song = genre.artists.sample.songs.sample
-              puts "====>"
-              puts "Alright #{@name_input}, guess the song!"
-              puts
-              puts song.lyrics
-    
+            if  input == "80's rock"
+                genre = Genre.new(input)
+                genre.add_artists(music_data[input.downcase.to_sym])
+                puts "OHH SUNSET STRIP, THOSE WERE THE TIMES!!"
+                song = genre.artists.sample.songs.sample
+                #   binding.pryq
+                artist = song.artist
+                if song.lyrics
+                puts "====>"
+                puts "Alright #{@name_input}, guess the song!"
+                puts
+                puts song.lyrics
+                song_guess(song)
+                artist_guess(artist)
+                else
+                genre_input
+                end
+        
+            elsif input == "Best of classics"
+                genre = Genre.new(input)
+                genre.add_artists(music_data[input.downcase.to_sym])
+                puts "You're an old school ha ?, let's test it !!"
+                song = genre.artists.sample.songs.sample
+                if song.lyrics
+                puts "====>"
+                puts "Alright #{@name_input}, guess the song!"
+                puts
+                puts song.lyrics
+                song_guess(song)
+                else
+                genre_input
+                end
 
-        elsif input == "That sweet piano"
-              genre = Genre.new(input)
-              genre.add_artists(music_data[input.downcase.to_sym])
-              puts "Just relax and listen to these sweet notes !!"
-              song = genre.artists.sample.songs.sample
-              puts "====>"
-              puts "Alright #{@name_input}, guess the song!"
-              puts
-              puts song.lyrics
-    
-        else
-              puts "Your entry is not valid , please enter a valid genre!"
-              genre_input
+            elsif input == "Grunge"
+                genre = Genre.new(input)
+                genre.add_artists(music_data[input.downcase.to_sym])
+                puts "Seattle's grey sky and some rainy mood !!"
+                song =  genre.artists.sample.songs.sample
+                if song.lyrics
+                puts "====>"
+                puts "Alright #{@name_input}, guess the song!"
+                puts
+                puts song.lyrics
+                song_guess(song)
+                else
+                genre_input
+                end
+
+            elsif input == "Guilty pleasures"
+                genre = Genre.new(input)
+                genre.add_artists(music_data[input.downcase.to_sym])
+                puts "Don't worry, we all got those guilty pleasures !!"
+                song = genre.artists.sample.songs.sample
+                if song.lyrics
+                puts "====>"
+                puts "Alright #{@name_input}, guess the song!"
+                puts
+                puts song.lyrics
+                song_guess(song)
+                else
+                genre_input
+                end
+        
+            elsif input == "Head bangers"
+                genre = Genre.new(input)
+                genre.add_artists(music_data[input.downcase.to_sym])
+                puts "SHAKE YOUR HAIR AND DO SOME AIR GUITAR !!"
+                artist = genre.artists.name
+                song = genre.artists.sample.songs.sample
+                if song.lyrics
+                puts "====>"
+                puts "Alright #{@name_input}, guess the song!"
+                puts
+                puts song.lyrics
+                song_guess(song)
+                else
+                    genre_input
+                end
+
+            elsif input == "That sweet piano"
+                genre = Genre.new(input)
+                genre.add_artists(music_data[input.downcase.to_sym])
+                puts "Just relax and listen to these sweet notes !!"
+                song = genre.artists.sample.songs.sample
+                if song.lyrics
+                puts "====>"
+                puts "Alright #{@name_input}, guess the song!"
+                puts
+                puts song.lyrics
+                song_guess(song)
+                #   artist_guess(artist)
+                else
+                genre_input
+                end
+        
+            else
+                puts "Your entry is not valid , please enter a valid genre!"
+                genre_input
+            end
         end
-       
     end
 
     def read_input
@@ -126,20 +158,51 @@ class User
         end
     end
 
-     def song_guess
+     def song_guess(song)
+        puts
         puts "Type your guess!"
         puts "=============>"
         song_input = gets.strip      
-        song_name = song_input.downcase.gsub(" ", "_").to_s
-        song_name
-        if song_name == song.lyrics
-            binding.pry
+       
+        if song_input.downcase == song.name.downcase
+            
             puts "Ohh wow!!, you know your lyrics !"
             puts "Now, can you guess the artist too ?"
+            @current_points += 1
         else
             puts "Not quite :(, try again !"
         end
      end
+
+
+     def artist_guess(artist)
+        puts
+        puts "Go ahead and try to guess the artist!"
+        puts "=============>"
+        artist_input = gets.strip      
+        
+        if artist_input.downcase == artist.name.downcase   
+            puts "You really are a pro at this!!"
+            @current_points += 1
+        else
+            puts "well 1 out of 2 ain't that shabby"
+        end
+     end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 end
 

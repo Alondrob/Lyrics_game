@@ -39,9 +39,10 @@ class Genre
             self.artists << artist
 
              songs.each do |song_name|
-             song = Song.new(song_name)
+             song = Song.new(song_name, artist)
              artist.songs << song
              song.lyrics = Api.get_lyrics(artist.name.gsub(" ", "_"), song.name.gsub(" ", "_"))
+             song.lyrics = song.lyrics.gsub("\[(.*?)\]", "") # regular expression to search and replace 
              end
         end
         
