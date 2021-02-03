@@ -1,21 +1,15 @@
 require_relative './data.rb'
  require 'pry'
  
-class Genre
-    
-    def initialize(name = nil)
-        @name = name
-        create_obj
-    end
-    def create_obj
-          puts "select Genre"
-          puts "===>"  
-          genre_name = gets.strip 
-          genre = music_data.keys.each {|genre_name| Genre.new(genre_name)}
-          binding.pry
-    end
+input = {
 
-end
+             "80's rock":"OHH SUNSET STRIP, THOSE WERE THE TIMES!!",
+             "Best of classics":"You're an old school ha ?, let's test it !!",
+             "Grunge":"Seattle's grey sky and some rainy mood !!",
+             "Guilty pleasures":"We all got those guilty pleasures!",
+             "Head bangers":"SHAKE YOUR HAIR AND DO SOME AIR GUITAR !!"
+             "That sweet piano":"Just relax and listen to these sweet notes !!"
+        }
 
-   genre = Genre.new
-   p genre
+
+        

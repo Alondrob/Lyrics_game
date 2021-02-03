@@ -9,7 +9,7 @@ def music_data
                           ],
                            
                        "Nirvana": [
-                          "About a Girl", "All Apologies", "Come as You Are"", ""Heart Shaped Box", "In Bloom", "The Man Who Sold the World", "Rape Me", "Smells Like Teen Spirit", "Where Did You Sleep Last Night?", "You Know You're Right"
+                          "About a Girl", "All Apologies", "Come as You Are", "Heart Shaped Box", "In Bloom", "The Man Who Sold the World", "Rape Me", "Smells Like Teen Spirit", "Where Did You Sleep Last Night?", "You Know You're Right"
                         ],
 
                         "Alice In Chains": [
@@ -132,12 +132,16 @@ def music_data
 
  end
 
-#  genres = music_data.keys.each {|genre_name| Genre.new(genre_name) }
+def genre_data
 
+  genre_data = {
 
-  # genres = music_data.keys.each {|genre_name| puts genre_name}
-  # puts genres.uniq
-  
-  #  genres = music_data.keys.uniq
+              "80's rock":"OHH SUNSET STRIP, THOSE WERE THE TIMES!!",
+              "Best of classics":"You're an old school ha ?, let's test it !!",
+              "Grunge":"Seattle's grey sky and some rainy mood !!",
+              "Guilty pleasures":"We all got those guilty pleasures!",
+              "Head bangers":"SHAKE YOUR HAIR AND DO SOME AIR GUITAR !!",
+              "That sweet piano":"Just relax and listen to these sweet notes !!"
+          }
 
-  #  puts genres
+end

@@ -4,11 +4,20 @@ require_relative 'genre.rb'
 require 'pry'
 
 class User
-
+    
     def initialize
+        @songs_guessed = []
         print_help
         read_input
       
+    end
+
+    def get_songs_guessed
+        @songs_guessed
+    end
+
+    def add_song_guess(song_name)
+        @songs_guessed << song_name
     end
 
 
@@ -37,113 +46,53 @@ class User
 
     def genre_input
         puts ":=>"
+        # puts genre_data.key?("Grunge".to_sym)
         input = gets.strip
         @max_points = 10 
         @current_points = 0
         while @current_points < @max_points do 
             puts "current points is #{@current_points}"
 
-            if  input == "80's rock"
-                genre = Genre.new(input)
-                genre.add_artists(music_data[input.downcase.to_sym])
-                puts "OHH SUNSET STRIP, THOSE WERE THE TIMES!!"
-                song = genre.artists.sample.songs.sample
-                #   binding.pryq
-                artist = song.artist
-                if song.lyrics
-                puts "====>"
-                puts "Alright #{@name_input}, guess the song!"
-                puts
-                puts song.lyrics
-                song_guess(song)
-                artist_guess(artist)
-                else
-                genre_input
-                end
-        
-            elsif input == "Best of classics"
-                genre = Genre.new(input)
-                genre.add_artists(music_data[input.downcase.to_sym])
-                puts "You're an old school ha ?, let's test it !!"
-                song = genre.artists.sample.songs.sample
-                if song.lyrics
-                puts "====>"
-                puts "Alright #{@name_input}, guess the song!"
-                puts
-                puts song.lyrics
-                song_guess(song)
-                else
-                genre_input
-                end
-
-            elsif input == "Grunge"
-                genre = Genre.new(input)
-                genre.add_artists(music_data[input.downcase.to_sym])
-                puts "Seattle's grey sky and some rainy mood !!"
-                song =  genre.artists.sample.songs.sample
-                if song.lyrics
-                puts "====>"
-                puts "Alright #{@name_input}, guess the song!"
-                puts
-                puts song.lyrics
-                song_guess(song)
-                else
-                genre_input
-                end
-
-            elsif input == "Guilty pleasures"
-                genre = Genre.new(input)
-                genre.add_artists(music_data[input.downcase.to_sym])
-                puts "Don't worry, we all got those guilty pleasures !!"
-                song = genre.artists.sample.songs.sample
-                if song.lyrics
-                puts "====>"
-                puts "Alright #{@name_input}, guess the song!"
-                puts
-                puts song.lyrics
-                song_guess(song)
-                else
-                genre_input
-                end
-        
-            elsif input == "Head bangers"
-                genre = Genre.new(input)
-                genre.add_artists(music_data[input.downcase.to_sym])
-                puts "SHAKE YOUR HAIR AND DO SOME AIR GUITAR !!"
-                artist = genre.artists.name
-                song = genre.artists.sample.songs.sample
-                if song.lyrics
-                puts "====>"
-                puts "Alright #{@name_input}, guess the song!"
-                puts
-                puts song.lyrics
-                song_guess(song)
-                else
-                    genre_input
-                end
-
-            elsif input == "That sweet piano"
-                genre = Genre.new(input)
-                genre.add_artists(music_data[input.downcase.to_sym])
-                puts "Just relax and listen to these sweet notes !!"
-                song = genre.artists.sample.songs.sample
-                if song.lyrics
-                puts "====>"
-                puts "Alright #{@name_input}, guess the song!"
-                puts
-                puts song.lyrics
-                song_guess(song)
-                #   artist_guess(artist)
-                else
-                genre_input
-                end
-        
+            puts genre_data[input.downcase.to_sym]
+           
+            if genre_data.key?(input.to_sym) == true
+                genre_select(input.downcase.to_sym)
             else
+                
                 puts "Your entry is not valid , please enter a valid genre!"
-                genre_input
+                break
             end
+
+
         end
     end
+
+
+    def genre_select(input)
+        genre = Genre.new(input)
+        genre.add_artists(music_data[input.downcase.to_sym])
+        puts genre_data[input.to_sym]
+        song = genre.artists.sample.songs.sample
+        while get_songs_guessed.include?(song.name) do 
+              song = genre.artists.sample.songs.sample
+        end
+        artist = song.artist
+        song.lyrics = Api.get_lyrics(artist.name.gsub(" ", "_"), song.name.gsub(" ", "_"))
+        
+        if song.lyrics
+            puts "====>"
+            puts "Alright #{@name_input}, guess the song!"
+            puts
+            puts song.lyrics
+            song_guess(song)
+            artist_guess(artist)
+        else
+            genre_input
+        end
+    end
+
+
+
 
     def read_input
         puts "Type here:"
@@ -159,8 +108,9 @@ class User
     end
 
      def song_guess(song)
-        puts
-        puts "Type your guess!"
+        add_song_guess(song.name.to_s)
+        # puts get_songs_guessed.length
+        puts "\nType your guess!"
         puts "=============>"
         song_input = gets.strip      
        
@@ -172,6 +122,26 @@ class User
         else
             puts "Not quite :(, try again !"
         end
+        # puts song.genre.to_sym
+        # puts song.artist.name.to_sym
+        # puts song.name.to_sym
+        # puts music_data[song.genre.to_sym][song.artist.name.to_sym]
+        # # puts music_data[song.genre.to_sym][song.artist.name.to_sym].key?(song.name.to_sym)
+        # puts song.name.downcase.to_s
+        # puts "--"
+        # found_index = -1
+        # music_data[song.genre.to_sym][song.artist.name.to_sym].each_with_index do |elm_name, index|
+        #     puts  elm_name == song.name 
+        #     if  elm_name == song.name 
+        #         found_index = index
+        #         break
+        #     end
+        # end
+        # if found_index > 0 
+        #     puts "found"
+        #    music_data[song.genre.to_sym][song.artist.name.to_sym].slice!(found_index)
+        # end
+        # puts music_data[song.genre.to_sym][song.artist.name.to_sym].length
      end
 
 
@@ -187,6 +157,7 @@ class User
         else
             puts "well 1 out of 2 ain't that shabby"
         end
+        # system("clear") || system("cls")
      end
 
 

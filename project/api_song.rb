@@ -44,6 +44,7 @@ require 'httparty'
 class Api 
 
     def self.get_lyrics(artist, song)
+        
         url = "https://api.lyrics.ovh/v1/#{artist}/#{song}"
         # binding.pry
         uri = URI.parse(url)
@@ -52,6 +53,7 @@ class Api
         request.body
         request_2 = JSON.parse(request.body)
         @response = request_2["lyrics"].gsub("\r\n", "\n\n")
+        
         
     end
 

@@ -34,18 +34,22 @@ class Genre
     end
 
     def add_artists(music_data)
+        puts "Please wait, loading data ..."
+        puts 
         music_data.each do |artist_name, songs|
+            # puts artist_name.to_s
             artist = Artist.new(artist_name.to_s)
             self.artists << artist
 
              songs.each do |song_name|
-             song = Song.new(song_name, artist)
-             artist.songs << song
-             song.lyrics = Api.get_lyrics(artist.name.gsub(" ", "_"), song.name.gsub(" ", "_"))
-             song.lyrics = song.lyrics.gsub("\[(.*?)\]", "") # regular expression to search and replace 
+                # puts song_name.to_s
+                song = Song.new(song_name, artist, self.name)
+                artist.songs << song
+                # song.lyrics = Api.get_lyrics(artist.name.gsub(" ", "_"), song.name.gsub(" ", "_"))
+            #  song.lyrics = song.lyrics.gsub("\[(.*?)\]", "") # regular expression to search and replace 
              end
         end
-        
+        puts "Data loaded, please continue"
         self
     end
 
