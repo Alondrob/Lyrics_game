@@ -50,9 +50,10 @@ class User
         input = gets.strip
         @max_points = 10 
         @current_points = 0
-        while @current_points < @max_points do 
+        while @current_points <= @max_points do #|| input != "quit" do 
+            if input != "quit"
             puts "current points is #{@current_points}"
-
+            # binding.pry
             puts genre_data[input.downcase.to_sym]
            
             if genre_data.key?(input.to_sym) == true
@@ -60,12 +61,20 @@ class User
             else
                 
                 puts "Your entry is not valid , please enter a valid genre!"
-                break
+                genre_input
             end
-
-
+        else 
+            abort
         end
-    end
+            # puts "You completed your #{genre.name} challenge !"
+        end
+        
+        # if @current_points >=  @max_points
+            puts "Congrats, you completed your lyrics challenge!"
+        # elsif input == "quit"
+        #     abort
+        # end
+     end
 
 
     def genre_select(input)
@@ -80,12 +89,13 @@ class User
         song.lyrics = Api.get_lyrics(artist.name.gsub(" ", "_"), song.name.gsub(" ", "_"))
         
         if song.lyrics
-            puts "====>"
+            puts "========================================>"
             puts "Alright #{@name_input}, guess the song!"
-            puts
+            puts "\n======================================>"
             puts song.lyrics
             song_guess(song)
             artist_guess(artist)
+            sleep(2)
         else
             genre_input
         end
@@ -117,43 +127,32 @@ class User
         if song_input.downcase == song.name.downcase
             
             puts "Ohh wow!!, you know your lyrics !"
-            puts "Now, can you guess the artist too ?"
-            @current_points += 1
+            puts "\nYour total points is #{@current_points += 1}"
+            # puts "\nNow, can you guess the artist too ?"
+
+        elsif song_input == "quit"
+            puts "Goodbye!"
+              abort
+
         else
-            puts "Not quite :(, try again !"
+            puts "Not quite, better luck next time!"
         end
-        # puts song.genre.to_sym
-        # puts song.artist.name.to_sym
-        # puts song.name.to_sym
-        # puts music_data[song.genre.to_sym][song.artist.name.to_sym]
-        # # puts music_data[song.genre.to_sym][song.artist.name.to_sym].key?(song.name.to_sym)
-        # puts song.name.downcase.to_s
-        # puts "--"
-        # found_index = -1
-        # music_data[song.genre.to_sym][song.artist.name.to_sym].each_with_index do |elm_name, index|
-        #     puts  elm_name == song.name 
-        #     if  elm_name == song.name 
-        #         found_index = index
-        #         break
-        #     end
-        # end
-        # if found_index > 0 
-        #     puts "found"
-        #    music_data[song.genre.to_sym][song.artist.name.to_sym].slice!(found_index)
-        # end
-        # puts music_data[song.genre.to_sym][song.artist.name.to_sym].length
+       
      end
 
 
      def artist_guess(artist)
-        puts
-        puts "Go ahead and try to guess the artist!"
+        puts "\nNow, can you guess the artist too ?"
+        # puts "Go ahead and try to guess the artist!"
         puts "=============>"
         artist_input = gets.strip      
         
         if artist_input.downcase == artist.name.downcase   
-            puts "You really are a pro at this!!"
-            @current_points += 1
+            puts "\n Wowww, you really are a pro at this!!"
+            puts "\nYour total points is #{@current_points += 1}"
+        elsif artist_input == "quit"
+              puts "Goodbye!"
+              abort
         else
             puts "well 1 out of 2 ain't that shabby"
         end
